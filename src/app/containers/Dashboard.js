@@ -145,9 +145,12 @@ function Dashboard() {
 
    useEffect(()=>{
         const categories_array = ['All'];
-        allData.forEach(element => {
-            categories_array.push(element.name);
-        });
+        if(allData){
+            allData.forEach(element => {
+                categories_array.push(element.name);
+            });
+        }
+        
         setCategories(categories_array);
    },[allData]);
    
@@ -209,9 +212,9 @@ function Dashboard() {
                                         <div className="select">
                                         <select onChange={handleSelectCat} disabled={newcat}>
                                             <option value={-1}>Select category</option>
-                                            {allData.map((onerow, i)=>{
+                                            {allData?allData.map((onerow, i)=>{
                                                 return (<option key={i} value={onerow.cid}>{onerow.name}</option>)
-                                            })}
+                                            }):null}
                                             
                                         </select>
                                         </div>
